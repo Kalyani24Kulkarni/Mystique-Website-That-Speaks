@@ -1,0 +1,243 @@
+<style type="text/css">
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+body{margin-top:20px;}
+.fa-fw {width: 2em;}
+.jumbotron {
+background: #358CCE;
+color: #FFF;
+border-radius: 0px;
+}
+.jumbotron-sm { padding-top: 24px;
+padding-bottom: 24px; }
+.jumbotron small {
+color: #FFF;
+}
+.h1 small {
+font-size: 24px;
+}
+.table-responsive{margin-top:25px;}
+</style>
+
+
+
+<div class="row" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Hello. This is the accounts page. Please move your mouse down to hear the different menu options.');" ><br><br><br><br></div>
+<div class="container" >
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked admin-menu">
+                <li class="active"><a href="#" data-target-id="home" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Hello' + current_user.first_name + current_user.last_name + 'Welcome to the account management page of the Mystique.');"><i class="fa fa-home fa-fw"></i>Home</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="Profile" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Click here to edit your personal details. Or move your mouse down to hear the other menu options.');"><i class="fa fa-list-alt fa-fw"></i>Personal Information</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="Orders" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Click here to hear details of your previous orders.Or move your mouse down to hear the other menu options.');"><i class="fa fa-file-o fa-fw"></i>Orders</a></li>
+                <li><a href="http://www.jquery2dotnet.com" data-target-id="Subscriptions" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Click here to hear details of your subscription orders.Or move your mouse back up to hear the previous menu options.');"><i class="fa fa-bar-chart-o fa-fw"></i>Subscriptions</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9 well admin-content" id="home">
+            <p>
+                Hello! {{current_user.first_name}}  {{current_user.last_name}}.<br>
+                Welcome to the account management page of the Mystique.
+            </p>
+        </div>
+        <div class="col-md-9 well admin-content" id="Profile">
+            <form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend ng-mouseleave="pauseit()" ng-mouseover="describe_element('Click here to enter your personal details.');">Personal details</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">First Name</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Please enter your first name.');" ng-model="current_user.first_name">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Last Name</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Please enter your last name.');" ng-model="current_user.last_name">
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textarea">Delivery Address</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="textarea" name="textarea" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Please enter your delivery address.');" ng-model="current_user.address"></textarea>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Home telephone</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Please enter your home telephone number.');" ng-model="current_user.contact_number">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Please click here to save account details.');" ng-click="update_info()">Save</button>
+  </div>
+</div>
+
+</fieldset>
+        </div>
+        <div class="col-md-9 well admin-content" id="Orders" >
+            <div class="row" ng-repeat="x in current_user.orders" >
+        <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead ng-mouseleave="pauseit()" ng-mouseover="describe_element('Please move your mouse down to hear your order details.');">
+          <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Product Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="y in x.products">
+            <td>{{y.productid}}</td>
+            <td ng-mouseleave="pauseit()" ng-mouseover="describe_element('The product is' + y.productname + 'Move right to hear product details.');">{{y.productname}}</td>
+            <td ng-mouseleave="pauseit()" ng-mouseover="describe_element(y.productcategory);">{{y.productcategory}}</td>
+            <td ng-mouseleave="pauseit()" ng-mouseover="describe_element('You have' + y.productcategory + 'of this item as part of this order.');">{{y.product_quantity}}</td>
+            <td ng-mouseleave="pauseit()" ng-mouseover="describe_element('This product costs' + y.productcost + 'dollars.');">{{y.productcost}}</td>
+            <td ng-mouseleave="pauseit()" ng-mouseover="describe_element('The total product cost is' + y.product_total + 'dollars.');">{{y.product_total}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row"><div class="col-md-2" ng-mouseleave="pauseit()" ng-mouseover="describe_element('The order total is' + x.order_total_tax + 'dollars.');"><p>Order Total:{{x.order_total_tax}}</p></div>
+    <div class="row"><div class="col-md-2" ng-mouseleave="pauseit()" ng-mouseover="describe_element('The delivery address for this order is' + x.delivery_address + 'dollars.');"><p>Delivery Address:{{x.delivery_address}}</p></div>
+    </div>
+    </div>
+        </div>
+        </div>
+        </div>
+        
+        
+
+
+
+<div class="col-md-6 well admin-content" id="Subscriptions" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Click here to hear your subscription orders.');">
+            <div class="row" ng-repeat="x in current_user.subscription_orders">
+        <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Product Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="y in x.products">
+            <td>{{y.productid}}</td>
+            <td ng-mouseover="describe_element('The product is' + y.productname + 'Move right to hear product details.');">{{y.productname}}</td>
+            <td ng-mouseleave="pauseit()" ng-mouseover="describe_element(y.productcategory);">{{y.productcategory}}</td>
+            <td ng-mouseleave="pauseit()" ng-mouseover="describe_element('This product costs' + y.productcost + 'dollars.');">{{y.productcost}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br><br>
+     <div class="row"><div class="col-md-4" ><p ng-mouseleave="pauseit()" ng-mouseover="describe_element('The total for this order is' + x.order_total_tax + 'dollars.');">Order Total:{{x.order_total_tax}}</p></div></div>
+    <div class="row"><div class="col-md-4" ><p ng-mouseleave="pauseit()" ng-mouseover="describe_element('The delivery address for this order is' + x.delivery_address);">Delivery Address:{{x.delivery_address}}</p></div></div>
+    </div>
+    </div>
+
+
+
+
+
+
+<div class="col-md-6 well admin-content" id="Help">
+            <div class="jumbotron jumbotron-sm">
+    <div class="container" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Click here to contact us for any queries or concerns.');">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="h1">
+                    Contact us<br> <small>Feel free to contact us</small></h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="col-md-10 well well-sm">
+                <form>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="name">
+                                Name</label>
+                            <input type="text" class="form-control" id="name" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Please enter your name.');" placeholder="Enter name" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input type="email" class="form-control" id="email" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Please enter your email address.');" placeholder="Enter email" required="required" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">
+                                Subject</label>
+                            <select id="subject" name="subject" class="form-control" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Please click here to choose from the given options for the email.');" required="required">
+                                <option value="na" selected="">Choose One:</option>
+                                <option value="service" ng-mouseleave="pauseit()" ng-mouseover="describe_element('General Customer Service.');">General Customer Service</option>
+                                <option value="suggestions" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Suggestions.');">Suggestions</option>
+                                <option value="product" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Product Support.');">Product Support</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">
+                                Message</label>
+                            <textarea name="message" id="message" class="form-control" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Please click here to type in the message.');" rows="9" cols="25" required="required"
+                                placeholder="Message"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary pull-right" id="btnContactUs" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Please click here to send the message.');">
+                            Send Message</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+    var navItems = $('.admin-menu li > a');
+    var navListItems = $('.admin-menu li');
+    var allWells = $('.admin-content');
+    var allWellsExceptFirst = $('.admin-content:not(:first)');
+    
+    allWellsExceptFirst.hide();
+    navItems.click(function(e)
+    {
+        e.preventDefault();
+        navListItems.removeClass('active');
+        $(this).closest('li').addClass('active');
+        
+        allWells.hide();
+        var target = $(this).attr('data-target-id');
+        $('#' + target).show();
+    });
+});
+</script>  

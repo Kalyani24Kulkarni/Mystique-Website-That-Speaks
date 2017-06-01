@@ -1,0 +1,103 @@
+<div class="row" ng-controller="login" ng-init="init_header1();">
+<div class="col-md-12">
+<!-- CREDIT CARD FORM STARTS HERE -->
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-4">
+<div class="panel panel-default credit-card-box" ng-init=payment_init()>
+<div class="panel-heading display-table" >
+<div class="row display-tr" >
+<h3 class="panel-title display-td" ng-mouseleave="pauseit()"    ng-mouseover="describe_element('Please hover down to enter the card details.');">Payment Details</h3>
+<div class="display-td" >                            
+<img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+</div>
+</div>                    
+</div>
+<form role="form">
+<div class="panel-body">
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label for="cardNumber" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Drag your mouse downwords slowly to enter your card number.');">CARD NUMBER</label>
+<div class="input-group">
+<input type="text" class="form-control" placeholder="Valid Card Number"  ng-mouseleave="pauseit()"    ng-mouseover="describe_element('enter your card number.');" ng-model="cc_number" required autofocus>
+<span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+</div>
+</div>                            
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label for="cardExpiry"><span class="hidden-xs" ng-mouseleave="pauseit()"    ng-mouseover="describe_element('Drag your mouse downwords slowly to Enter your expiration date.');">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+<input type="tel" class="form-control" name="cardExpiry" placeholder="MM / YY" autocomplete="cc-exp" ng-mouseleave="pauseit()"    ng-mouseover="describe_element('Enter your expiration date.');" ng-model="cc_expiry" required />
+</div>
+</div>
+<div class="col-md-12">
+<div class="form-group">
+<label for="cardCVC" ng-mouseleave="pauseit()"    ng-mouseover="describe_element('Drag your mouse downwords slowly to Enter your three digit CVV code.');">CVV CODE</label>
+<input type="text" class="form-control" name="cardCVC" placeholder="CVC" ng-mouseleave="pauseit()"    ng-mouseover="describe_element('Enter your three digit CVV code.');" autocomplete="cc-csc" ng-model="cc_type" required /></div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="checkbox">
+    <label for="checkboxes-0">
+      <input type="checkbox" ng-model="subscribe_order">
+      Subscription Order
+    </label>
+	</div>
+  </div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<button class="btn btn-success btn-lg btn-block" type="submit" ng-mouseleave="pauseit()"    ng-mouseover="describe_element('Click to confirm your payment.');"ng-click="payment()">Confirm Payment</button>
+</div>
+</div>
+<div class="alert alert-danger" ng-hide="invalid_cc">
+<strong>I am sorry this order can not be completed. Please try again later.</strong>
+</div>
+<div class="alert alert-danger" ng-hide="enter_cc">
+<strong>Please enter the credit card information</strong>
+</div>
+<div class="alert alert-success" ng-hide="valid_cc">
+<strong>Your order has been placed and will be delivered within 2 days.</strong>
+</div>
+</form>
+</div>
+</div>            
+<!-- CREDIT CARD FORM ENDS HERE -->
+<div class="col-md-2"></div>
+
+<div class="col-md-4">
+<div class="row">
+ <div class="totals">
+    <div class="totals-item">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal" ng-model="order_total" ng-change="order_total" ng-mouseleave="pauseit()" ng-mouseover="describe_element('The total for this order will be '+ order_total+'.   Move your mouse downward to find out about the tax for this order.')">{{order_total}}</div>
+    </div>
+    <div class="totals-item">
+      <label>Tax (5%)</label>
+      <div class="totals-value" id="cart-tax" ng-model="order_total_tax" ng-change="order_total_tax" ng-change="order_total" ng-mouseleave="pauseit()" ng-mouseover="describe_element('The tax for this order will be '+ order_total+'Move your mouse downward find out about the grand total for this order.')">{{(order_total_tax-order_total)}}</div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total" ng-model="order_total_tax" ng-change="order_total_tax" ng-change="order_total" ng-mouseleave="pauseit()" ng-mouseover="describe_element('The Grand total for this order will be '+ order_total+'. Move your mouse downward to checkout.')">{{order_total_tax}}</div>
+    </div>
+  </div>
+</div>
+<div class="row">
+<br><br>
+	<div class="form-group">
+  <label class="col-md-12 control-label" for="textarea">Delivery Address</label>
+  <div class="col-md-12">                     
+    <textarea class="form-control" id="textarea" name="textarea" ng-model="address" ng-mouseleave="pauseit()" ng-mouseover="describe_element('Click here to add the address to the order.')"></textarea>
+  </div>
+</div>
+</div>
+</div>
+<div class="col-md-1"></div>
+</div>
+</div>
+</div>
